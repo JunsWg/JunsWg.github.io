@@ -1,0 +1,91 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>Hexo主题配置与优化 | 保持好奇</title><link rel="stylesheet" type="text/css" href="//fonts.neworld.org/css?family=Source+Code+Pro"><link rel="stylesheet" type="text/css" href="/css/style.css?v=2.0.1"><link rel="stylesheet" type="text/css" href="/css/highlight.css?v=2.0.1"><link rel="Shortcut Icon" href="/favicon.ico"><link rel="bookmark" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Hexo主题配置与优化</h1><a id="logo" href="/.">保持好奇</a><p class="description">独学而无友则孤陋而寡闻</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div><div id="search-form"><div id="result-mask" class="hide"></div><label><input id="search-key" type="text" autocomplete="off" placeholder="Arama"></label><div id="result-wrap" class="hide"><div id="search-result"></div></div><div class="hide"><template id="search-tpl"><div class="item"><a href="/{path}" title="{title}"><div class="title">{title}</div><div class="time">{date}</div><div class="tags">{tags}</div></a></div></template></div></div></div><div id="layout" class="layout-g"><div class="layout-l"><div class="content_container"><div class="post"><h1 class="post-title">Hexo主题配置与优化</h1><div class="post-meta"><a href="/Hexo主题配置与优化/#comments" class="comment-count"></a><p><span class="date">Dec 17, 2018</span><span><i id="busuanzi_container_page_pv"><i id="busuanzi_value_page_pv"></i><i>点击</i></i></span></p></div><div class="post-content"><p>Hexo主题配置与优化（二）</p>
+<p>参考文献</p>
+<p><a href="https://starwindy.oschina.io/2015/05/06/Hexo%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BC%98%E5%8C%96%EF%BC%88%E4%BA%8C%EF%BC%89/" target="_blank" rel="noopener">https://starwindy.oschina.io/2015/05/06/Hexo%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BC%98%E5%8C%96%EF%BC%88%E4%BA%8C%EF%BC%89/</a></p>
+<p>2015-05-06<br>修改调试技巧</p>
+<p>在chrome浏览器中按F12，调出审查元素，然后点击最左端的搜索图标，就可以单独页面上查看任意元素的样式。然后再点击元素，就可以在右侧的Styles选项的下方调整其代码，而且改动实时生效，代码改动完页面相应元素马上就会改变，显示出效果，这点非常棒！等到调整满意后就复制相关css代码到别的地方备份一下。因为只要一刷新，页面就会恢复成原来的样子。</p>
+<p>如果修改满意后，但是不知道要修改的相关代码具体在哪个文件，可以去landscape-plus主题github地址在This repository中搜索相关代码，然后就知道相关代码所在的文件路径了。<br>添加网站小图标</p>
+<p>到D:\hexo\themes\landscape-plus\layout_partial编辑head.ejs文件，按Ctrl＋f查找关键词favicon，找到在第28行和第29行。<br>在 &lt;% if (theme.favicon){ %&gt;的下面插入以下代码：</p>
+<link href="<%- config.root %>favicon.ico" rel="icon" type="image/x-ico">
+
+<p>即变成：</p>
+<p>&lt;% if (theme.rss){ %&gt;<br>    <link rel="alternative" href="<%- theme.rss %>" title="<%= config.title %>" type="application/atom+xml"><br>  &lt;% } %&gt;<br>  &lt;% if (theme.favicon){ %&gt;<br>    <link href="<%- config.root %>favicon.ico" rel="icon" type="image/x-ico"><br>  &lt;% } %&gt;<br>  &lt;%- css(‘css/style’) %&gt;</p>
+<p>然后在网上找个好看的图标，或者去图标生成网站：<a href="http://www.faviconer.com/生成一个后缀名为.ico的图标文件，最后把该文件放到D:\hexo\source目录下，重新部署即可。" target="_blank" rel="noopener">http://www.faviconer.com/生成一个后缀名为.ico的图标文件，最后把该文件放到D:\hexo\source目录下，重新部署即可。</a><br>添加自定义404页面</p>
+<p>直接新建一个404.html文件放到D:\hexo\source目录下，然后编辑即可，注意最上面要写：</p>
+<h2 id="layout-false"><a href="#layout-false" class="headerlink" title="layout: false"></a>layout: false</h2><p>404音乐电台</p>
+<p>因为熊海做的这个音乐电台只有一个html文件和一张背景图片，所以可以添加到404页面（在此感谢熊海）。<br>在这个百度网盘下载熊海博客电台.rar，然后新建一个404.html文件，在—下方粘贴代码，然后把这个文件放到D:\hexo\source和D:\hexo\themes\landscape-plus目录下，接着把下载文件中的bg.jpg放到D:\hexo\source\images目录下即可。<br>修改正文字体大小及调整行间距</p>
+<p>在D:\hexo\themes\landscape-plus\source\css_variables.styl中的第34行，改为font-size = 16px，然后顺便把正文的行间距也一起改了：line-height = 1.8em。<br>但是改了后所有的行间距都变成1.8em了，我想把侧边栏的文字的行间距改小一点，于是去D:\hexo\themes\landscape-plus\source\css_partial\sidebar.styl修改.widget下为line-height: 1.6em，注意还要删掉@extend $base-style这一行才能起效果。<br>修改副标题字体大小和颜色<br>修改副标题字体颜色</p>
+<p>我想修改副标题的字体颜色，这里推荐给大家一个办法:<br>先去爱词霸 翻译 “副标题字体颜色”，结果会出来 “Subtitle font color” ，然后去hexo-theme-landscape，在上方的搜索框搜索Subtitle font color回车，然后我们就找到了修改字体颜色的目录为hexo-theme-landscape（主题目录）/source/css/_partial/header.styl，接着去我们自己相应的主题目录编辑D:\hexo\themes\landscape-plus\source\css_partial\header.styl文件，还是搜索关键字subtitle，找到第60行修改为：</p>
+<p>##subtitle<br>  @extend $logo-text<br>  font-size: subtitle-size<br>  line-height: subtitle-size<br>  letter-spacing: 5px<br>  color: ##fff</p>
+<p>其中letter-spacing是字符间距，你可以调整它试一下，颜色color改为##fff白色，和主标题一致。<br>修改副标题字体大小</p>
+<p>因为副标题字体大小的英语是subtitle size，所以同样在hexo-theme-landscape中搜索subtitle size，得到结果页面，很明显看出要修改主题目录下的source/css/_variables.styl文件，于是查找subtitle后把16px改为20px：</p>
+<p>// Header<br>logo-size = 40px<br>subtitle-size = 20px<br>banner-height = 300px<br>banner-url = “images/banner.jpg”</p>
+<p>经过测试可以知道上面的logo-size表示你的主标题字体大小，而你的主题目录/source/css/_partial/header.styl文件中logo-text那一栏的下面color就表示主标题字体的颜色。</p>
+<pre><code>这里一定要提醒各位：= 和:后面一定要加个空格。
+</code></pre><p>修改后保存文件，然后在博客目录执行：</p>
+<p>hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</p>
+<p>重新部署后，刷新就会看到效果了。<br>调整右侧边栏顺序</p>
+<p>编辑主题配置文件，比如你使用的默认主题，就到D:\hexo\themes\landscape_config.yml调整widgets:那一栏的顺序。<br>原来的：</p>
+<p>widgets:</p>
+<ul>
+<li>category</li>
+<li>tagcloud</li>
+<li>archive</li>
+<li>recent_posts</li>
+</ul>
+<p>改为：</p>
+<p>widgets:</p>
+<ul>
+<li>recent_posts</li>
+<li>category</li>
+<li>archive</li>
+<li>tagcloud</li>
+</ul>
+<p>页面底部添加自定义文字</p>
+<p>打开D:\hexo\themes\landscape-plus\layout_partial\footer.ejs,在最底下 的下面和上面之间插入以下代码：</p>
+<div style="font-family:楷体; font-size: 28px; position:relative; left: 350px;bottom:70px;">人不是因为没有信念而失败，而是因为不能把信念化成行动，并且坚持到底。<br></div><br><div style="font-family:楷体; font-size: 28px; position:relative; left: 920px;bottom:50px;">——戴尔·卡耐基《人性的弱点》<br></div>
+
+<p>2015-11-15更新：因为上述代码会撑大窗口，故而更新成下面的代码：</p>
+<div style="font-family:楷体; font-size: 22px;position:absolute;left: 220px;margin: -100px 0px 0px 0px;">人不是因为没有信念而失败，而是因为不能把信念化成行动，并且坚持到底。——戴尔·卡耐基《人性的弱点》<br></div>
+
+<p>2015-11-20更新：增加单独样式以及移动端的适配。<br>具体详见另一篇博文：Hexo博客移动端适配的优化<br>修改返回顶部图标位置</p>
+<p>觉得返回顶部图标的位置太高了，要调低点。<br>打开D:\hexo\themes\landscape-plus\source\css_partial\totop.styl，第5行改为bottom 2em。<br>修改文章主题样式细节<br>添加标题顶部日期和分类的图标</p>
+<p>打开D:\hexo\themes\landscape-plus\source\css_partial\article.styl文件，修改.article-date（第16行）为：</p>
+<p>&amp;:before<br>  font-family: font-icon<br>  color: ##ccc<br>  content: “\f073”</p>
+<p>.article-category大概是第27行:</p>
+<p>&amp;:before<br>  font-family: font-icon<br>  content: “\f06c”</p>
+<p>顺便调整一下日期前面图标的位置：margin-left: 20px<br>修改文章底部标签前面的图标</p>
+<p>.article-tag-list-link<br>  a&amp;:hover<br>    color: color-link<br>  &amp;:before<br>    content: “@”</p>
+<p>这个图标我们使用特殊符号，而不使用FontAwesome图标，就不用写font-family: font-icon这一行代码，反之则要写。<br>直接把你要使用的特殊符号粘贴进content的双引号之间就行了。</p>
+<pre><code>注意：
+1.粘贴特殊符号时，在“notepad++”里是显示为“□”，但是部署或者启动服务预览后会显示出来。
+2.上面的a&amp;:hover color: color-link是指鼠标滑过“标签”时，会显示链接颜色。
+3.查找一些常见的FontAwesome图标对应的CSS代码可以搜索关键词“FontAwesome CSS content values”。参见文章底部的附录。
+</code></pre><p>标题前面加条蓝线</p>
+<p>修改.article-header条目,添加border-left这一行：</p>
+<p>.article-header<br>  padding: article-padding article-padding 0<br>  border-left: 5px solid color-twitter     //标题前面加条蓝线</p>
+<p>其中color-twitter在D:\hexo\themes\landscape-plus\source\css_variables.styl第21行为蓝色，你也可以修改为其他颜色或者自定义一个新的颜色属性。<br>修改文章正文字体为宋体</p>
+<p>打开D:\hexo\themes\landscape-plus\source\css_partial\article.styl文件，修改.article条目为：</p>
+<p>.article<br>  margin: block-margin 0<br>  font-family: SimSun   //修改正文字体为宋体<br>  letter-spacing: 1px   //调整文字间距</p>
+<p>然后修改正文旁边的日期、分类、标题等其他字体为微软雅黑。</p>
+<p>.article-date              //修改正文旁边的日期字体<br>  font-family: “微软雅黑”   //添加这一行</p>
+<p>同样也添加这一行到article-category .article-header .article-tag-list-item .article-comment-link .article-share-link这些条目中。<br>修改文章一到六级标题字体为微软雅黑，并且不加粗</p>
+<p>编辑D:\hexo\themes\landscape-plus\source\css_extend.styl文件，修改相关代码为如下：</p>
+<p>h1<br>  font-family: “微软雅黑”<br>  font-size: 1.5em<br>h2<br>  font-family: “微软雅黑”<br>  font-size: 1.5em<br>h3<br>  font-family: “微软雅黑”<br>  font-size: 1.3em<br>h4<br>  font-family: “微软雅黑”<br>  font-size: 1.2em<br>h5<br>  font-family: “微软雅黑”<br>  font-size: 1em<br>h6<br>  font-family: “微软雅黑”<br>  font-size: 1em<br>  color: color-grey</p>
+<p>然后把他们不加粗只要删掉相关条目下的font-weight: bold和font-weight类似代码就OK。<br>先在landscape-plus的github主页搜索bold，发现相关代码的文件是source/css/_extend.styl和source/css/_partial/article.styl。<br>于是删除source/css/_extend.styl文件中$base-style下的h1, h2, h3, h4, h5, h6条目下的font-weight: bold代码，注意也要删除下方 h2, h3, h4, h5, h6条目下的font-weight: 600这一行代码。<br>接着去source/css/_partial/article.styl文件，删除.article-entry下的h1, h2, h3, h4, h5, h6条目下的font-weight: bold代码。<br>于是1-6级标题不加粗就完成了。<br>修改侧边栏字体为宋体</p>
+<p>打开D:\hexo\themes\landscape-plus\source\css_partial\sidebar.styl，在.widget下方添加一行，如下：</p>
+<p>.widget<br>  font-family: SimSun    //修改侧边栏字体为宋体</p>
+<p>标题字体不加粗</p>
+<p>打开D:\hexo\themes\landscape-plus\source\css_partial\article.styl文件，删掉.article-title条目下方的font-weight: bold这一行。<br>修改右侧分类、近期文章等字体为宋体</p>
+<p>打开D:\hexo\themes\landscape-plus\source\css_partial\sidebar-aside.styl文件，修改.widget-title条目如下：</p>
+<p>.widget-title<br>  font-weight: bold         //字体加粗<br>  font-family: SimSun       //修改字体为宋体<br>  @extend $block-caption</p>
+<p>重新部署后，刷新即可。<br>附录<br>特殊符号大全</p>
+<pre><code>http://tw.piliapp.com/symbol/
+http://w13.loxa.edu.tw/ctjh930220/
+http://star.gg/special-symbols
+http://www.1t2t.com/3t/soft/28.htm
+</code></pre><p>FontAwesome对应CSS值</p>
+<pre><code>A list of Font Awesome icons and their CSS content values
+Every Font Awesome 4.3.0 Icon, CSS Class, &amp; Unicode
+Font Awesome icons and their CSS content values
+</code></pre></div><div class="tags"></div><div class="post-share"><div class="bdsharebuttonbox"><span style="float:left;line-height: 28px;height: 28px;font-size:16px;font-weight:blod">分享到：</span><a href="#" data-cmd="more" class="bds_more"></a><a href="#" data-cmd="mshare" title="分享到一键分享" class="bds_mshare"></a><a href="#" data-cmd="fbook" title="分享到Facebook" class="bds_fbook"></a><a href="#" data-cmd="twi" title="分享到Twitter" class="bds_twi"></a><a href="#" data-cmd="linkedin" title="分享到linkedin" class="bds_linkedin"></a><a href="#" data-cmd="youdao" title="分享到有道云笔记" class="bds_youdao"></a><a href="#" data-cmd="evernotecn" title="分享到印象笔记" class="bds_evernotecn"></a><a href="#" data-cmd="weixin" title="分享到微信" class="bds_weixin"></a><a href="#" data-cmd="qzone" title="分享到QQ空间" class="bds_qzone"></a><a href="#" data-cmd="tsina" title="分享到新浪微博" class="bds_tsina"></a></div></div><div class="post-nav"><a href="/hexo主题中代码加行号已经字体修改/" class="pre">hexo主题中代码加行号以及字体修改</a><a href="/BlueLake_README/" class="next">BlueLake theme的README</a></div><div id="comments"></div></div></div></div><div class="layout-r"><div id="sidebar"><div class="search-pla"></div><div id="toc" class="widget"><div class="widget-title"><i class="fa fa-fei">文章目录</i></div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#layout-false"><span class="toc-text">layout: false</span></a></li></ol></div><div class="widget"><div class="widget-title"><i class="fa fa-xie"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/pic/">pic</a></li><li class="post-list-item"><a class="post-list-link" href="/hexo中添加本地图片/">hexo中添加本地图片</a></li><li class="post-list-item"><a class="post-list-link" href="/github/">ubuntu上github的部署</a></li><li class="post-list-item"><a class="post-list-link" href="/hexo/">hexo</a></li><li class="post-list-item"><a class="post-list-link" href="/hexo-admin/">hexo-admin 编辑MD实时看效果</a></li><li class="post-list-item"><a class="post-list-link" href="/hexo主题中代码加行号已经字体修改/">hexo主题中代码加行号以及字体修改</a></li><li class="post-list-item"><a class="post-list-link" href="/Hexo主题配置与优化/">Hexo主题配置与优化</a></li><li class="post-list-item"><a class="post-list-link" href="/BlueLake_README/">BlueLake theme的README</a></li><li class="post-list-item"><a class="post-list-link" href="/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/test/">Markdown语法整理</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-biao"> 标签</i></div><div class="tagcloud"></div></div><div class="widget"><div class="widget-title"><i class="fa fa-archive"> 归档</i></div><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-you"> 友情链接</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div></div><a id="totop" href="#top"></a><div id="footer"><div class="footer-info"><p><a href="/baidusitemap.xml">Baidu Site Haritası</a> |  <a href="/atom.xml">订阅</a> |  <a href="/about/">关于</a></p><p>本站总访问量：<i id="busuanzi_container_site_pv"><i id="busuanzi_value_site_pv"></i></i>次</p><p><span> Copyright &copy;<a href="/." rel="nofollow">Junsheng Wang.</a></span><span> Theme by<a rel="nofollow" target="_blank" href="https://github.com/chaooo/hexo-theme-BlueLake"> BlueLake.</a></span><span> Count by<a href="http://busuanzi.ibruce.info/"> busuanzi.</a></span><span> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a></span></p></div></div></div><script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><script type="text/javascript" src="/js/search.json.js?v=2.0.1"></script><script type="text/javascript" src="/js/toctotop.js?v=2.0.1" async></script><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","weixin","tsina","qzone","linkedin","fbook","twi","print","renren","sqq","evernotecn","bdysc","tqq","tqf","bdxc","kaixin001","tieba","douban","bdhome","thx","ibaidu","meilishuo","mogujie","diandian","huaban","duitang","hx","fx","youdao","sdo","qingbiji","people","xinhua","mail","isohu","yaolan","wealink","ty","iguba","h163","copy"],"bdPic":"","bdStyle":"1","bdSize":"16"},"share":{},"image":{"viewList":["tsina","qzone","weixin","fbook","twi","linkedin","youdao","evernotecn","mshare"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["tsina","qzone","weixin","fbook","twi","linkedin","youdao","evernotecn","mshare"]}};with(document)0[(getElementsByTagName('head')[0]||head).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script></body></html>
