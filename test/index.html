@@ -1,9 +1,9 @@
 <!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>Markdown语法整理 | 保持好奇</title><link rel="stylesheet" type="text/css" href="//fonts.neworld.org/css?family=Source+Code+Pro"><link rel="stylesheet" type="text/css" href="/css/style.css?v=2.0.1"><link rel="stylesheet" type="text/css" href="/css/highlight.css?v=2.0.1"><link rel="Shortcut Icon" href="/favicon.ico"><link rel="bookmark" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Markdown语法整理</h1><a id="logo" href="/.">保持好奇</a><p class="description">独学而无友则孤陋而寡闻</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div><div id="search-form"><div id="result-mask" class="hide"></div><label><input id="search-key" type="text" autocomplete="off" placeholder="Arama"></label><div id="result-wrap" class="hide"><div id="search-result"></div></div><div class="hide"><template id="search-tpl"><div class="item"><a href="/{path}" title="{title}"><div class="title">{title}</div><div class="time">{date}</div><div class="tags">{tags}</div></a></div></template></div></div></div><div id="layout" class="layout-g"><div class="layout-l"><div class="content_container"><div class="post"><h1 class="post-title">Markdown语法整理</h1><div class="post-meta"><a href="/test/#comments" class="comment-count"></a><p><span class="date">Dec 13, 2018</span><span><i id="busuanzi_container_page_pv"><i id="busuanzi_value_page_pv"></i><i>点击</i></i></span></p></div><div class="post-content"><p>Markdown支持传统的HTML标签。</p>
 <p>比如一个链接，你不太喜欢Markdown的写法，也可以直接写成<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"http://www.baidu.com"</span>&gt;</span>百度<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <h1 id="Markdown的语法整理"><a href="#Markdown的语法整理" class="headerlink" title="Markdown的语法整理"></a>Markdown的语法整理</h1><p>参考文献</p>
-<p><a href="https://www.jianshu.com/p/b03a8d7b1719" target="_blank" rel="noopener">Markdown 语法整理大集合2017</a></p>
-<p><a href="https://ouweiya.gitbooks.io/markdown/" target="_blank" rel="noopener">Markdown 常用语法笔记</a></p>
-<p><a href="https://www.jianshu.com/p/191d1e21f7ed" target="_blank" rel="noopener">Markdown基本语法</a></p>
+<blockquote>
+<p><a href="https://www.jianshu.com/p/b03a8d7b1719" target="_blank" rel="noopener">Markdown 语法整理大集合2017</a><br><a href="https://ouweiya.gitbooks.io/markdown/" target="_blank" rel="noopener">Markdown 常用语法笔记</a><br><a href="https://www.jianshu.com/p/191d1e21f7ed" target="_blank" rel="noopener">Markdown基本语法</a></p>
+</blockquote>
 <h2 id="1-标题"><a href="#1-标题" class="headerlink" title="1. 标题"></a>1. 标题</h2><p>一般#作为文章大标题，只有一个，一个#是一级标题，二个#是二级标题，以此类推。</p>
 <p>支持六级标题，分别为[h1~h6]</p>
 <p>Ps： # 后面保持空格</p>
@@ -103,13 +103,15 @@
 </tbody>
 </table>
 <p>html表格</p>
+<blockquote>
 <p><a href="http://www.tablesgenerator.com/" target="_blank" rel="noopener">http://www.tablesgenerator.com/</a></p>
+</blockquote>
 <h2 id="5-链接"><a href="#5-链接" class="headerlink" title="5. 链接"></a>5. 链接</h2><h3 id="5-1-内链式"><a href="#5-1-内链式" class="headerlink" title="5.1 内链式"></a>5.1 内链式</h3><p>注：{:target=”_blank”}跳转方式兼容性一般 ，多数第三方平台不支持跳转<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">百度1</span>](<span class="link">http://www.baidu.com/"百度一下"</span>)</span><br></pre></td></tr></table></figure></p>
 <p><a href="http://www.baidu.com/&quot;百度一下&quot;" target="_blank" rel="noopener">百度1</a></p>
 <h3 id="5-2-引用式"><a href="#5-2-引用式" class="headerlink" title="5.2 引用式"></a>5.2 引用式</h3><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">百度2</span>][<span class="symbol">2</span>]</span><br><span class="line">[<span class="symbol">2</span>]: <span class="link">http://www.baidu.com/  "百度二下"</span></span><br></pre></td></tr></table></figure>
 <p>[百度2][2]<br>[2]: <a href="http://www.baidu.com/" target="_blank" rel="noopener">http://www.baidu.com/</a>  “百度二下”</p>
 <h3 id="5-3-邮箱链接"><a href="#5-3-邮箱链接" class="headerlink" title="5.3 邮箱链接"></a>5.3 邮箱链接</h3><p><code>&lt;xxx@outlook.com&gt;</code></p>
-<p><a href="mailto:&#120;&#120;&#120;&#x40;&#x6f;&#117;&#x74;&#108;&#x6f;&#x6f;&#x6b;&#x2e;&#x63;&#x6f;&#x6d;" target="_blank" rel="noopener">&#120;&#120;&#120;&#x40;&#x6f;&#117;&#x74;&#108;&#x6f;&#x6f;&#x6b;&#x2e;&#x63;&#x6f;&#x6d;</a></p>
+<p><a href="mailto:&#x78;&#120;&#x78;&#x40;&#x6f;&#x75;&#116;&#x6c;&#111;&#x6f;&#107;&#46;&#99;&#111;&#x6d;" target="_blank" rel="noopener">&#x78;&#120;&#x78;&#x40;&#x6f;&#x75;&#116;&#x6c;&#111;&#x6f;&#107;&#46;&#99;&#111;&#x6d;</a></p>
 <h2 id="6-图片"><a href="#6-图片" class="headerlink" title="6. 图片"></a>6. 图片</h2><h3 id="6-1-内链式"><a href="#6-1-内链式" class="headerlink" title="6.1 内链式"></a>6.1 内链式</h3><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![<span class="string">图片alt</span>](<span class="link">图片地址 "图片title"</span>)</span><br></pre></td></tr></table></figure>
 <p>图片alt 就是显示在图片下面的文字，相当于对图片内容的解释。<br>图片title是图片的标题，当鼠标移到图片上时显示的内容。title可加可不加</p>
 <h4 id="6-1-1-加载本地图片（相对路径）"><a href="#6-1-1-加载本地图片（相对路径）" class="headerlink" title="6.1.1 加载本地图片（相对路径）"></a>6.1.1 加载本地图片（相对路径）</h4><p><strong>MarkDown方式</strong><br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![<span class="string">图片1</span>](<span class="link">/../pic/timg.jpg "图片title"</span>)</span><br></pre></td></tr></table></figure></p>
@@ -125,7 +127,9 @@
 <p>在xxxx.md中访问写成<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![<span class="string">你想输入的替代文字</span>](<span class="link">xxxx/图片名.jpg</span>)</span><br></pre></td></tr></table></figure></p>
 <p>就能正确访问，但试图在yyy.md中需写成<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img <span class="attribute">src</span>=<span class="string">"../xxxx/图片名.jpg"</span>&gt;</span><br></pre></td></tr></table></figure></p>
 <p>详细可参见</p>
+<blockquote>
 <p><a href="https://junswg.github.io/hexo%E4%B8%AD%E6%B7%BB%E5%8A%A0%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87/" target="_blank" rel="noopener">hexo中添加本地图片</a></p>
+</blockquote>
 <h4 id="6-1-2-加载绝对路径"><a href="#6-1-2-加载绝对路径" class="headerlink" title="6.1.2 加载绝对路径"></a>6.1.2 加载绝对路径</h4><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">!<span class="selector-attr">[blockchain]</span>(<span class="attribute">https</span>:<span class="comment">//ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/</span></span><br><span class="line">u=<span class="number">702257389</span>,<span class="number">1274025419</span>&amp;fm=<span class="number">27</span>&amp;gp=<span class="number">0</span>.jpg <span class="string">"区块链"</span>)</span><br></pre></td></tr></table></figure>
 <p><img src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/
 u=702257389,1274025419&amp;fm=27&amp;gp=0.jpg" alt="blockchain" title="区块链"></p>
@@ -198,7 +202,9 @@ u=702257389,1274025419&amp;fm=27&amp;gp=0.jpg" alt="blockchain" title="区块链
 <hr>
 <hr>
 <h2 id="11-字体颜色"><a href="#11-字体颜色" class="headerlink" title="11. 字体颜色"></a>11. 字体颜色</h2><p>参考文献</p>
+<blockquote>
 <p><a href="https://blog.csdn.net/u011995719/article/details/77232626" target="_blank" rel="noopener">Markdown修改字体颜色</a></p>
+</blockquote>
 <p>语法规则如下<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">font</span>  更改语法&gt;</span> 你的内容 <span class="tag">&lt;/<span class="name">font</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>其中更改语法有三种:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">color=<span class="comment">#0099ff 更改字体颜色 </span></span><br><span class="line">face=<span class="string">"黑体"</span> 更改字体 </span><br><span class="line">size= 7 更改字体大小</span><br></pre></td></tr></table></figure></p>
 <p>举例</p>
