@@ -7,7 +7,17 @@
 <p>下面整理本地实现过程。</p>
 <h2 id="2-实现原理"><a href="#2-实现原理" class="headerlink" title="2. 实现原理"></a>2. 实现原理</h2><p>悬停标题是画上去的，而不是加到view hierarchy里去，具体根据滚动的情况确定如何画。</p>
 <p>自定义控件，该控件继承<code>ExpandableListView</code>类，并有一个<code>View</code>成员变量，用以表示悬停的一级列表。</p>
-<h2 id="3-ExpandableListView的使用简介"><a href="#3-ExpandableListView的使用简介" class="headerlink" title="3. ExpandableListView的使用简介"></a>3. ExpandableListView的使用简介</h2><p>可参见我的另一篇</p>
+<h2 id="3-ExpandableListView的使用简介"><a href="#3-ExpandableListView的使用简介" class="headerlink" title="3. ExpandableListView的使用简介"></a>3. ExpandableListView的使用简介</h2><p><strong>步骤简述：</strong></p>
+<ol>
+<li><code>ExpandableListView</code>的布局</li>
+<li>要显示的数据</li>
+<li>一级列表和二级列表的布局</li>
+<li><code>ExtendableListViewAdapter</code>自定义适配器，为<code>ExpandableListView</code>提供数据</li>
+<li>Activity调用</li>
+<li>绑定<code>ExpandableListView</code>和<code>ExtendableListViewAdapter</code></li>
+<li>加入点击监听</li>
+</ol>
+<p>详细可参见我的另一篇</p>
 <blockquote>
 <p><a href="https://junswg.github.io/ExpandableListView%E7%9A%84%E4%BD%BF%E7%94%A8%E7%AE%80%E4%BB%8B/" target="_blank" rel="noopener">ExpandableListView的使用简介</a></p>
 </blockquote>
