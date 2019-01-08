@@ -41,28 +41,39 @@
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onMeasure</span><span class="params">(<span class="keyword">int</span> widthMeasureSpec, <span class="keyword">int</span> heightMeasureSpec)</span> </span>&#123;</span><br><span class="line">   setMeasuredDimension(getDefaultSize(getSuggestedMinimumWidth(), widthMeasureSpec),</span><br><span class="line">           getDefaultSize(getSuggestedMinimumHeight(), heightMeasureSpec));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>该函数比<code>onDraw</code>先执行，由子控件重写，决定子控件View的大小（宽高值）。它在调用<code>Measure（）</code>时被调用。</li>
-<li>父控件将自己的大小和mode，通过<code>MeasureSpec</code>传给子控件。<ul>
+<li><p>父控件将自己的大小和mode，通过<code>MeasureSpec</code>传给子控件。</p>
+<ul>
 <li><code>MeasureSpec</code>由大小和模式组成,封装了父布局传递给子布局的布局要求</li>
-<li>每个<code>MeasureSpec</code>代表了一组宽度和高度的要求</li>
-<li><code>MeasureSpec</code>有三种模式：<ul>
-<li>UNSPECIFIED(未指定),父元素部队自元素施加任何束缚，子元素可以得到任意想要的大小;</li>
-<li>EXACTLY(完全)，父元素决定自元素的确切大小，子元素将被限定在给定的边界里而忽略它本身大小；</li>
-<li>AT_MOST(至多)，子元素至多达到指定大小的值。 </li>
+<li>每个<code>MeasureSpec</code>代表了一组宽度和高度的要求      </li>
+<li><p><code>MeasureSpec</code>定义于<code>View.java</code></p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> MeasureSpec &#123;</span><br><span class="line">     	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MODE_SHIFT = <span class="number">30</span>;</span><br><span class="line">     	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MODE_MASK  = <span class="number">0</span>x3 &lt;&lt; MODE_SHIFT;</span><br><span class="line">       </span><br><span class="line">     	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> UNSPECIFIED = <span class="number">0</span> &lt;&lt; MODE_SHIFT;</span><br><span class="line">     	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> EXACTLY     = <span class="number">1</span> &lt;&lt; MODE_SHIFT;</span><br><span class="line">     	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> AT_MOST     = <span class="number">2</span> &lt;&lt; MODE_SHIFT;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> makeMeasureSpec(@IntRange(<span class="keyword">from</span> = <span class="number">0</span>, to = (<span class="number">1</span> &lt;&lt; MeasureSpec.MODE_SHIFT) - <span class="number">1</span>) <span class="keyword">int</span> <span class="keyword">size</span>, @MeasureSpecMode <span class="keyword">int</span> mode) &#123;</span><br><span class="line">           <span class="keyword">if</span> (sUseBrokenMakeMeasureSpec) &#123;</span><br><span class="line">               <span class="keyword">return</span> <span class="keyword">size</span> + mode;</span><br><span class="line">           &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">               <span class="keyword">return</span> (<span class="keyword">size</span> &amp; ~MODE_MASK) | (mode &amp; MODE_MASK);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">     	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>MeasureSpec</code>的三种模式：</p>
+<ul>
+<li><code>UNSPECIFIED</code>(未指定),父元素部队自元素施加任何束缚，子元素可以得到任意想要的大小;</li>
+<li><code>EXACTLY</code>(完全)，父元素决定自元素的确切大小，子元素将被限定在给定的边界里而忽略它本身大小；</li>
+<li><code>AT_MOST</code>(至多)，子元素至多达到指定大小的值。 </li>
 </ul>
 </li>
+</ul>
+</li>
+<li><code>onMeasure</code>函数常用的三个函数：<ul>
+<li><code>static int getMode(int measureSpec)</code>:根据提供的测量值(格式)提取模式(上述三个模式之一)</li>
+<li><code>static int getSize(int measureSpec)</code>:根据提供的测量值(格式)提取大小值(这个大小也就是我们通常所说的大小)</li>
+<li><code>static int makeMeasureSpec(int size,int mode)</code>:根据提供的大小值和模式创建一个测量值(格式) </li>
 </ul>
 </li>
 <li>子控件根据<code>layout</code>文件中父控件，子控件的<code>&quot;MATCH_PARENT&quot;</code>，<code>&quot;WRAP_CONTENT&quot;</code>，<code>指定值</code>，<code>padding内边距</code>和<code>margin外边距</code>等等对于<code>View</code>大小的约束，计算宽高值（未必是最终大小）。</li>
-<li>计算出实际的高和宽通过<code>setMeasuredDimension()</code>保存，如果所测的视图是<code>ViewGroup</code>通过<code>measureChild</code>方法递归的计算其中的每一个子view。</li>
+<li>计算出实际的高和宽通过<code>setMeasuredDimension()</code>保存，如果所测的视图是<code>ViewGroup</code>通过<code>measureChild</code>方法递归的计算其中的每一个子<code>View</code>。</li>
 </ul>
 <ol start="2">
 <li><code>setMeasuredDimension</code>函数：</li>
 </ol>
 <p><code>setMeasuredDimension</code>方法必须由<code>onMeasure(int, int)</code>来调用，来存储测量的宽，高值，定义如下：<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> <span class="keyword">final</span> <span class="function"><span class="keyword">void</span> <span class="title">setMeasuredDimension</span><span class="params">(<span class="keyword">int</span> measuredWidth, <span class="keyword">int</span> measuredHeight)</span> </span>&#123;</span><br><span class="line">    mMeasuredWidth = measuredWidth;</span><br><span class="line">    mMeasuredHeight = measuredHeight;</span><br><span class="line"> </span><br><span class="line">    mPrivateFlags |= PFLAG_MEASURED_DIMENSION_SET;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <ol start="3">
-<li>多个View或者ViewGroup嵌套：</li>
+<li>多个<code>View</code>或者<code>ViewGroup</code>嵌套：</li>
 </ol>
-<p>子控件如果有多个View或者ViewGroup嵌套，需要循环遍历视图中所有的View。</p>
+<p>子控件如果有多个<code>View</code>或者<code>ViewGroup</code>嵌套，需要循环遍历视图中所有的<code>View</code>。</p>
 <figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> <span class="function"><span class="keyword">void</span> <span class="title">onMeasure</span><span class="params">(<span class="keyword">int</span> widthMeasureSpec, <span class="keyword">int</span> heightMeasureSpec)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">       <span class="comment">//调用ViewGroup类中测量子类的方法</span></span><br><span class="line">       measureChildren(widthMeasureSpec, heightMeasureSpec);</span><br><span class="line">       <span class="comment">//调用View类中默认的测量方法</span></span><br><span class="line">       <span class="keyword">super</span>.onMeasure(widthMeasureSpec,heightMeasureSpec);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li><p><code>measureChildren</code>函数：</p>
@@ -74,7 +85,21 @@
 <figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> <span class="keyword">void</span> measureChild(View child, <span class="built_in">int</span> parentWidthMeasureSpec,</span><br><span class="line">        <span class="built_in">int</span> parentHeightMeasureSpec) &#123;</span><br><span class="line">	<span class="comment">// 取得子视图的布局参数</span></span><br><span class="line">    <span class="keyword">final</span> LayoutParams lp = child.getLayoutParams();</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// 通过getChildMeasureSpec获取最终的宽高详细测量值</span></span><br><span class="line">    <span class="keyword">final</span> <span class="built_in">int</span> childWidthMeasureSpec = getChildMeasureSpec(parentWidthMeasureSpec,</span><br><span class="line">            mPaddingLeft + mPaddingRight, lp.<span class="built_in">width</span>);</span><br><span class="line">    <span class="keyword">final</span> <span class="built_in">int</span> childHeightMeasureSpec = getChildMeasureSpec(parentHeightMeasureSpec,</span><br><span class="line">            mPaddingTop + mPaddingBottom, lp.<span class="built_in">height</span>);</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// 将计算好的宽高详细测量值传入measure方法，完成最后的测量</span></span><br><span class="line">    child.measure(childWidthMeasureSpec, childHeightMeasureSpec);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h4 id="4-2-2-布局——onLayout"><a href="#4-2-2-布局——onLayout" class="headerlink" title="4.2.2 布局——onLayout()"></a>4.2.2 布局——<code>onLayout()</code></h4><p>决定View在ViewGroup中的位置</p>
+<h4 id="4-2-2-布局——onLayout"><a href="#4-2-2-布局——onLayout" class="headerlink" title="4.2.2 布局——onLayout()"></a>4.2.2 布局——<code>onLayout()</code></h4><p><code>View.java</code><br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> <span class="function"><span class="keyword">void</span> <span class="title">onLayout</span><span class="params">(<span class="keyword">boolean</span> changed, <span class="keyword">int</span> left, <span class="keyword">int</span> top, <span class="keyword">int</span> right, <span class="keyword">int</span> bottom)</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>被<code>public void layout(int l, int t, int r, int b)</code>[<code>View.java</code>]调用</li>
+<li>递归计算整个<code>View</code>树实际的位置</li>
+<li>为抽象方法，所以在继承<code>View</code>时必须要重写该方法（<code>onMeasure</code>不需要），并调用其所有子<code>View</code>的<code>layout</code>函数</li>
+<li>参数介绍<ul>
+<li><code>changed</code> 当前View的大小和位置改变了</li>
+<li><code>left</code> 左部位置（相对于父视图）</li>
+<li><code>top</code> 顶部位置（相对于父视图）</li>
+<li><code>right</code> 右部位置（相对于父视图）</li>
+<li><code>bottom</code> 底部位置（相对于父视图）</li>
+</ul>
+</li>
+</ul>
+<p>×分析至layout函数×</p>
 <h4 id="4-2-3-绘制——onDraw"><a href="#4-2-3-绘制——onDraw" class="headerlink" title="4.2.3 绘制——onDraw()"></a>4.2.3 绘制——<code>onDraw()</code></h4><p>如何绘制这个View。</p>
 <p>自绘控件的内容都是自己绘制出来的，在View的<code>onDraw</code>方法中完成绘制</p>
 <h3 id="4-3-继承原生控件"><a href="#4-3-继承原生控件" class="headerlink" title="4.3 继承原生控件"></a>4.3 继承原生控件</h3><h3 id="4-4-参考文献"><a href="#4-4-参考文献" class="headerlink" title="4.4 参考文献"></a>4.4 参考文献</h3><blockquote>
