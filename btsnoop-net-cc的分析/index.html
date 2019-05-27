@@ -8,12 +8,17 @@
 </li>
 </ol>
 <h3 id="1-2-官方使用文档"><a href="#1-2-官方使用文档" class="headerlink" title="1.2 官方使用文档"></a>1.2 官方使用文档</h3><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">system<span class="regexp">/bt/</span>doc<span class="regexp">/btsnoop_net.md</span></span><br></pre></td></tr></table></figure>
-<h3 id="1-3-编译情况"><a href="#1-3-编译情况" class="headerlink" title="1.3 编译情况"></a>1.3 编译情况</h3><pre><code>* 源文件build出的static library为`libbt-hci`(`system/bt/hci/Android.bp`)
-</code></pre><figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">cc_library_static </span>&#123;</span><br><span class="line"><span class="symbol">    name:</span> <span class="string">"libbt-hci"</span>,</span><br></pre></td></tr></table></figure>
-<pre><code>* 该static library会build进`libbluetooth.so`(`system/bt/main/Android.bp`)
-</code></pre><figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">cc_library_shared </span>&#123;</span><br><span class="line"><span class="symbol">    name:</span> <span class="string">"libbluetooth"</span>,</span><br></pre></td></tr></table></figure>
-<pre><code>* 另外,也会被`libbt-stack`static library(`system/bt/stack/Android.bp`)所用。
-</code></pre><figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">cc_library_static </span>&#123;</span><br><span class="line"><span class="symbol">name:</span> <span class="string">"libbt-stack"</span>,</span><br></pre></td></tr></table></figure>
+<h3 id="1-3-编译情况"><a href="#1-3-编译情况" class="headerlink" title="1.3 编译情况"></a>1.3 编译情况</h3><ol>
+<li><p>源文件build出的static library为<code>libbt-hci</code>(<code>system/bt/hci/Android.bp</code>)</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">cc_library_static </span>&#123;</span><br><span class="line"><span class="symbol">    name:</span> <span class="string">"libbt-hci"</span>,</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>该static library会build进<code>libbluetooth.so</code>(<code>system/bt/main/Android.bp</code>)</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">cc_library_shared </span>&#123;</span><br><span class="line"><span class="symbol">    name:</span> <span class="string">"libbluetooth"</span>,</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>另外,也会被<code>libbt-stack</code>static library(<code>system/bt/stack/Android.bp</code>)所用。</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">cc_library_static </span>&#123;</span><br><span class="line"><span class="symbol">name:</span> <span class="string">"libbt-stack"</span>,</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
 <h2 id="2-主要功能"><a href="#2-主要功能" class="headerlink" title="2. 主要功能"></a>2. 主要功能</h2><p><code>btsoop_net</code>通过本地TCP套接字公开蓝牙snoop日志，该套接字配合使用<code>hcidump</code>可实时调试HCI数据。<br>使用的端口号如下（<code>system/bt/doc/network_ports.md</code>）：<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">TCP <span class="number">8872</span> (hci<span class="regexp">/src/</span>btsnoop_net.cc) - <span class="keyword">read</span> live btsnoop logs</span><br><span class="line">TCP <span class="number">8873</span> (hci<span class="regexp">/src/</span>hci_inject.cc) - <span class="keyword">inject</span> HCI packets <span class="keyword">into</span> HCI stream</span><br></pre></td></tr></table></figure></p>
 <p>备注：关于<code>hci_inject.cc</code>的分析（待续。。。。。。。）</p>
 <h2 id="3-使用方法"><a href="#3-使用方法" class="headerlink" title="3. 使用方法"></a>3. 使用方法</h2><ol>
